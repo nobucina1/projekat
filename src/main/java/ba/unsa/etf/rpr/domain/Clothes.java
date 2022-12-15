@@ -51,7 +51,7 @@ public class Clothes {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Clothes clothes = (Clothes) o;
-        return idclothes == clothes.idclothes && idcategory == clothes.idcategory && size == clothes.size && Objects.equals(clothes_name, clothes.clothes_name);
+        return idclothes == clothes.idclothes && idcategory == clothes.idcategory && size == clothes.size && clothes_name.equals(clothes.clothes_name);
     }
 
     @Override

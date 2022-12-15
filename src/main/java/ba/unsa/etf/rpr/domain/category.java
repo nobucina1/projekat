@@ -33,7 +33,7 @@ public class category {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         category category = (category) o;
-        return idcategory == category.idcategory && Objects.equals(name, category.name);
+        return idcategory == category.idcategory && name.equals(category.name);
     }
 
     @Override
