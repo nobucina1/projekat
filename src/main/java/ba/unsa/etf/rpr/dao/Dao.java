@@ -23,14 +23,14 @@ public interface Dao<T> {
      * @param item bean for saving to database
      * @return saved item with id field populated
      */
-    T add(T item);
+    T add(T item) throws ShopException;
 
     /**
      * Fully updates entity in database based on id (primary) match.
      * @param item - bean to be updated. id must be populated
      * @return updated version of bean
      */
-    T update(T item);
+    T update(T item) throws ShopException;
 
     /**
      * Hard delete of item from database with given id
