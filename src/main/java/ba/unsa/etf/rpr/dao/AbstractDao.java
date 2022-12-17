@@ -70,6 +70,17 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
         }
     }
 
+    public void delete(int id) throws ShopException {
+        String sql = "DELETE FROM "+tableName+" WHERE id = ?";
+        try{
+            PreparedStatement stmt = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stmt.setObject(1, id);
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            throw new ShopException(e.getMessage(), e);
+        }
+    }
+
 
 }
 
