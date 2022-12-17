@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Nermin Obucina
  */
 
-public class category {
+public class Category {
 
     private int idcategory;
     private String name;
@@ -32,7 +32,7 @@ public class category {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        category category = (category) o;
+        Category category = (Category) o;
         return idcategory == category.idcategory && name.equals(category.name);
     }
 
