@@ -9,7 +9,7 @@ import java.util.TreeMap;
 
 /**
  * MySQL implementation of the DAO
- * @author Dino Keco
+ * @author Nermin Obucina
  */
 public class CategoryDaoSQLImpl extends AbstractDao<Category> implements CategoryDao{
 
