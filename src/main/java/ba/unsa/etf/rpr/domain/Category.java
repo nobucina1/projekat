@@ -12,12 +12,14 @@ public class Category implements Idable {
     private int idcategory;
     private String name;
 
-    public int getIdcategory() {
-        return idcategory;
+    @Override
+    public void setId(int idcategory) {
+        this.idcategory = idcategory;
     }
 
-    public void setIdcategory(int idcategory) {
-        this.idcategory = idcategory;
+    @Override
+    public int getId() {
+        return idcategory;
     }
 
     public String getName() {
