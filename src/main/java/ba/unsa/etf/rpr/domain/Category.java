@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Nermin Obucina
  */
 
-public class Category {
+public class Category implements Idable {
 
     private int idcategory;
     private String name;
