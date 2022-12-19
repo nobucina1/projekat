@@ -14,12 +14,14 @@ public class User implements Idable {
     private String mail;
     private String address;
 
-    public int getIduser() {
+    @Override
+    public int getId() {
         return iduser;
     }
 
-    public void setIduser(int iduser) {
-        this.iduser = iduser;
+    @Override
+    public void setId(int id) {
+        this.iduser = id;
     }
 
     public String getName() {
@@ -77,4 +79,5 @@ public class User implements Idable {
                 ", address='" + address + '\'' +
                 '}';
     }
+
 }

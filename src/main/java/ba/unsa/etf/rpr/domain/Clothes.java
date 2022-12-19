@@ -11,7 +11,7 @@ public class Clothes {
 
     private int idclothes;
     private String clothes_name;
-    private int idcategory;
+    private Category idcategory;
     private int size;
     private int price;
 
@@ -31,11 +31,11 @@ public class Clothes {
         this.clothes_name = clothes_name;
     }
 
-    public int getIdcategory() {
+    public Category getIdcategory() {
         return idcategory;
     }
 
-    public void setIdcategory(int idcategory) {
+    public void setIdcategory(Category idcategory) {
         this.idcategory = idcategory;
     }
 
