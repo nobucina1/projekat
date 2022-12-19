@@ -5,6 +5,7 @@ import ba.unsa.etf.rpr.domain.Clothes;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.ShopException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -45,13 +46,33 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
         return item;
     }
 
+    /**
+     * @param text search string for users with given name
+     * @return list of users
+     * @author ahajro2
+     */
     @Override
-    public List<Clothes> searchByName(String text) throws ShopException {
-        return null;
+    public List<User> searchByName(String text) throws ShopException {
+        //mora sa concat jer inace nece raditi jer radi sa key chars
+        String query = "SELECT * FROM User WHERE name LIKE concat('%', ?, '%')";
+        try {
+            PreparedStatement stmt = getConnection().prepareStatement(query);
+            stmt.setString(1, text);
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<User> quoteLista = new ArrayList<>();
+            while (rs.next()) {
+                quoteLista.add(row2object(rs));
+            }
+            return quoteLista;
+        } catch (SQLException e) {
+            throw new ShopException(e.getMessage(), e);
+        }
     }
 
     @Override
-    public List<Clothes> searchBySurname(Category category) throws ShopException {
+    public List<User> searchBySurname(Category category) throws ShopException {
         return null;
     }
+
+
 }

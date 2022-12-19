@@ -20,7 +20,7 @@ public interface UserDao extends Dao<User>{
      * @param text search string for users
      * @return list of users
      */
-    List<Clothes> searchByName(String text) throws ShopException;
+    List<User> searchByName(String text) throws ShopException;
 
     /**
      * Returns all users that have given surname.
@@ -28,6 +28,6 @@ public interface UserDao extends Dao<User>{
      * @param category search string for users
      * @return list of users
      */
-    List<Clothes> searchBySurname(Category category) throws ShopException;
+    List<User> searchBySurname(Category category) throws ShopException;
 
 }
