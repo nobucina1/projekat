@@ -25,9 +25,9 @@ public interface UserDao extends Dao<User>{
     /**
      * Returns all users that have given surname.
      *
-     * @param category search string for users
+     * @param text search string for users
      * @return list of users
      */
-    List<User> searchBySurname(Category category) throws ShopException;
+    List<User> searchBySurname(String text) throws ShopException;
 
 }

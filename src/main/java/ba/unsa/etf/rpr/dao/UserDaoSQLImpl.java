@@ -49,7 +49,7 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
     /**
      * @param text search string for users with given name
      * @return list of users
-     * @author ahajro2
+     * @author Nermin Obucina
      */
     @Override
     public List<User> searchByName(String text) throws ShopException {
@@ -69,9 +69,27 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
         }
     }
 
+    /**
+     * @param text search string for users with given surname
+     * @return list of users
+     * @author Nermin Obucina
+     */
     @Override
-    public List<User> searchBySurname(Category category) throws ShopException {
-        return null;
+    public List<User> searchBySurname(String text) throws ShopException {
+        //mora sa concat jer inace nece raditi jer radi sa key chars
+        String query = "SELECT * FROM User WHERE surname LIKE concat('%', ?, '%')";
+        try {
+            PreparedStatement stmt = getConnection().prepareStatement(query);
+            stmt.setString(1, text);
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<User> quoteLista = new ArrayList<>();
+            while (rs.next()) {
+                quoteLista.add(row2object(rs));
+            }
+            return quoteLista;
+        } catch (SQLException e) {
+            throw new ShopException(e.getMessage(), e);
+        }
     }
 
 
