@@ -8,18 +8,20 @@ import java.util.Objects;
  * @author Nermin Obucina
  */
 
-public class Buying {
+public class Buying implements Idable{
     private int idbuying;
     private Date date_of_buying;
     private User iduser;
     private Clothes idclothes;
 
-    public int getIdbuying() {
+    @Override
+    public int getId() {
         return idbuying;
     }
 
-    public void setIdbuying(int idbuying) {
-        this.idbuying = idbuying;
+    @Override
+    public void setId(int id) {
+        this.idbuying = id;
     }
 
     public Date getDate_of_buying() {
