@@ -11,8 +11,8 @@ import java.util.Objects;
 public class Buying {
     private int idbuying;
     private Date date_of_buying;
-    private int iduser;
-    private int idclothes;
+    private User iduser;
+    private Clothes idclothes;
 
     public int getIdbuying() {
         return idbuying;
@@ -30,19 +30,19 @@ public class Buying {
         this.date_of_buying = date_of_buying;
     }
 
-    public int getIduser() {
+    public User getIduser() {
         return iduser;
     }
 
-    public void setIduser(int iduser) {
+    public void setIduser(User iduser) {
         this.iduser = iduser;
     }
 
-    public int getIdclothes() {
+    public Clothes getIdclothes() {
         return idclothes;
     }
 
-    public void setIdclothes(int idclothes) {
+    public void setIdclothes(Clothes idclothes) {
         this.idclothes = idclothes;
     }
 
