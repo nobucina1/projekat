@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Nermin Obucina
  */
 
-public class User {
+public class User implements Idable {
     private int iduser;
     private String name;
     private String surname;

@@ -14,14 +14,14 @@ import java.util.TreeMap;
 public class CategoryDaoSQLImpl extends AbstractDao<Category> implements CategoryDao{
 
     public CategoryDaoSQLImpl() {
-        super("categories");
+        super("Categories");
     }
 
     @Override
     public Category row2object(ResultSet rs) throws ShopException {
         try {
             Category cat = new Category();
-            cat.setId(rs.getInt("id"));
+            cat.setId(rs.getInt("idcategory"));
             cat.setName(rs.getString("name"));
             return cat;
         } catch (SQLException e) {
@@ -32,7 +32,7 @@ public class CategoryDaoSQLImpl extends AbstractDao<Category> implements Categor
     @Override
     public Map<String, Object> object2row(Category object) {
         Map<String, Object> row = new TreeMap<String, Object>();
-        row.put("id", object.getId());
+        row.put("idcategory", object.getId());
         row.put("name", object.getName());
         return row;
     }
