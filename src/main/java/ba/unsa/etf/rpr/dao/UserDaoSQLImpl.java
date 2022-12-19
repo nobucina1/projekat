@@ -21,7 +21,17 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
 
     @Override
     public User row2object(ResultSet rs) throws ShopException {
-        return null;
+        try {
+            User q = new User();
+            q.setId(rs.getInt("iduser"));
+            q.setName(rs.getString("name"));
+            q.setSurname(rs.getString("surname"));
+            q.setMail(rs.getString("mail"));
+            q.setAddress(rs.getString("address"));
+            return q;
+        } catch (Exception e) {
+            throw new ShopException(e.getMessage(), e);
+        }
     }
 
     @Override
