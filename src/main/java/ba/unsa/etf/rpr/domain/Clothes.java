@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Nermin Obucina
  */
 
-public class Clothes {
+public class Clothes implements Idable{
 
     private int idclothes;
     private String clothes_name;
@@ -15,12 +15,14 @@ public class Clothes {
     private int size;
     private int price;
 
-    public int getIdclothes() {
+    @Override
+    public int getId() {
         return idclothes;
     }
 
-    public void setIdclothes(int idclothes) {
-        this.idclothes = idclothes;
+    @Override
+    public void setId(int id) {
+        this.idclothes = id;
     }
 
     public String getClothes_name() {
