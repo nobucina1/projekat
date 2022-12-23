@@ -19,7 +19,9 @@ public class ClothesDaoSQLImpl extends AbstractDao<Clothes> implements ClothesDa
             Clothes c = new Clothes();
             c.setId(rs.getInt("idclothes"));
             c.setClothes_name(rs.getString("clothes_name"));
-
+            c.setIdcategory(DaoFactory.categoryDao().getById(rs.getInt("idcategory")));
+            c.setSize(rs.getInt("size"));
+            c.setPrice(rs.getInt("price"));
             return c;
         } catch (Exception e) {
             throw new ShopException(e.getMessage(),e);
