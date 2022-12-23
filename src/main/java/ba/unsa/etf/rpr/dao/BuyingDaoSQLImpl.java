@@ -11,8 +11,8 @@ import java.util.Map;
  * @author Nermin Obucina
  */
 public class BuyingDaoSQLImpl extends AbstractDao<Buying> implements BuyingDao{
-    public BuyingDaoSQLImpl(String tableName) {
-        super(tableName);
+    public BuyingDaoSQLImpl() {
+        super("Buying");
     }
 
     @Override

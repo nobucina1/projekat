@@ -5,13 +5,12 @@ import ba.unsa.etf.rpr.domain.Clothes;
 import ba.unsa.etf.rpr.exceptions.ShopException;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
 public class ClothesDaoSQLImpl extends AbstractDao<Clothes> implements ClothesDao{
-    public ClothesDaoSQLImpl(String tableName) {
-        super(tableName);
+    public ClothesDaoSQLImpl() {
+        super("Clothes");
     }
 
     @Override
