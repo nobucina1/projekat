@@ -7,6 +7,7 @@ import ba.unsa.etf.rpr.exceptions.ShopException;
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class ClothesDaoSQLImpl extends AbstractDao<Clothes> implements ClothesDao{
     public ClothesDaoSQLImpl() {
@@ -31,7 +32,13 @@ public class ClothesDaoSQLImpl extends AbstractDao<Clothes> implements ClothesDa
 
     @Override
     public Map<String, Object> object2row(Clothes object) {
-        return null;
+        Map<String, Object> item = new TreeMap<String, Object>();
+        item.put("idclothes", object.getId());
+        item.put("clothes_name", object.getClothes_name());
+        item.put("category_id", object.getIdcategory().getId());
+        item.put("size", object.getSize());
+        item.put("price", object.getPrice());
+        return item;
     }
 
     /**
