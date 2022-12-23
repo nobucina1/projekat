@@ -1,7 +1,5 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.domain.Category;
-import ba.unsa.etf.rpr.domain.Clothes;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.ShopException;
 import java.sql.*;
@@ -16,7 +14,7 @@ import java.util.TreeMap;
  */
 
 public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
-    public UserDaoSQLImpl(String tableName) {
+    public UserDaoSQLImpl() {
         super("Users");
     }
 
