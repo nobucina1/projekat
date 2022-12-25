@@ -99,6 +99,18 @@ public class ClothesDaoSQLImpl extends AbstractDao<Clothes> implements ClothesDa
      */
     @Override
     public List<Clothes> searchBySize(int size) throws ShopException {
-        return null;
+        String query = "SELECT * FROM clothes WHERE size = ?";
+        try {
+            PreparedStatement stmt = getConnection().prepareStatement(query);
+            stmt.setString(1, String.valueOf(size));
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Clothes> clothesLista = new ArrayList<>();
+            while(rs.next()){
+                clothesLista.add(row2object(rs));
+            }
+            return clothesLista;
+        }catch (SQLException e){
+            throw new ShopException(e.getMessage(),e);
+        }
     }
 }
