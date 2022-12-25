@@ -52,7 +52,7 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
     @Override
     public List<User> searchByName(String text) throws ShopException {
         //mora sa concat jer inace nece raditi jer radi sa key chars
-        String query = "SELECT * FROM User WHERE name LIKE concat('%', ?, '%')";
+        String query = "SELECT * FROM user WHERE name LIKE concat('%', ?, '%')";
         try {
             PreparedStatement stmt = getConnection().prepareStatement(query);
             stmt.setString(1, text);
@@ -75,7 +75,7 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
     @Override
     public List<User> searchBySurname(String text) throws ShopException {
         //mora sa concat jer inace nece raditi jer radi sa key chars
-        String query = "SELECT * FROM User WHERE surname LIKE concat('%', ?, '%')";
+        String query = "SELECT * FROM user WHERE surname LIKE concat('%', ?, '%')";
         try {
             PreparedStatement stmt = getConnection().prepareStatement(query);
             stmt.setString(1, text);

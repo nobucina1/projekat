@@ -53,7 +53,7 @@ public class ClothesDaoSQLImpl extends AbstractDao<Clothes> implements ClothesDa
     @Override
     public List<Clothes> searchByText(String text) throws ShopException {
         //mora sa concat jer inace nece raditi jer radi sa key chars
-        String query = "SELECT * FROM quotes WHERE clothes_name LIKE concat('%', ?, '%')";
+        String query = "SELECT * FROM clothes WHERE clothes_name LIKE concat('%', ?, '%')";
         try {
             PreparedStatement stmt = getConnection().prepareStatement(query);
             stmt.setString(1, text);
@@ -76,7 +76,19 @@ public class ClothesDaoSQLImpl extends AbstractDao<Clothes> implements ClothesDa
      */
     @Override
     public List<Clothes> searchByCategory(Category category) throws ShopException {
-        return null;
+        String query = "SELECT * FROM clothes WHERE idcategory = ?";
+        try {
+            PreparedStatement stmt = getConnection().prepareStatement(query);
+            stmt.setInt(1, category.getId());
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Clothes> clothesLista = new ArrayList<>();
+            while (rs.next()){
+                clothesLista.add(row2object(rs));
+            }
+            return clothesLista;
+        }catch (SQLException e){
+            throw new ShopException(e.getMessage(), e);
+        }
     }
 
     /**
