@@ -7,6 +7,7 @@ import ba.unsa.etf.rpr.exceptions.ShopException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * MySQL's implementation of the DAO
@@ -33,6 +34,11 @@ public class BuyingDaoSQLImpl extends AbstractDao<Buying> implements BuyingDao{
 
     @Override
     public Map<String, Object> object2row(Buying object) {
-        return null;
+        Map<String, Object> item = new TreeMap<String, Object>();
+        item.put("idbuying", object.getId());
+        item.put("date_of_buying", object.getDate_of_buying());
+        item.put("iduser", object.getIduser().getId());
+        item.put("idclothes", object.getIdclothes().getId());
+        return item;
     }
 }
