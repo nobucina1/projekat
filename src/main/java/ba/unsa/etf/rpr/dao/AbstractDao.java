@@ -32,6 +32,10 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         return this.connection;
     }
 
+    public void setConnection(Connection connection){
+        this.connection = connection;
+    }
+
     public abstract T row2object(ResultSet rs) throws ShopException;
 
     public abstract Map<String, Object> object2row(T object);

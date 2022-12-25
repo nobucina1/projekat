@@ -4,7 +4,10 @@ import ba.unsa.etf.rpr.domain.Category;
 import ba.unsa.etf.rpr.domain.Clothes;
 import ba.unsa.etf.rpr.exceptions.ShopException;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -49,7 +52,20 @@ public class ClothesDaoSQLImpl extends AbstractDao<Clothes> implements ClothesDa
      */
     @Override
     public List<Clothes> searchByText(String text) throws ShopException {
-        return null;
+        //mora sa concat jer inace nece raditi jer radi sa key chars
+        String query = "SELECT * FROM quotes WHERE clothes_name LIKE concat('%', ?, '%')";
+        try {
+            PreparedStatement stmt = getConnection().prepareStatement(query);
+            stmt.setString(1, text);
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Clothes> clothesLista = new ArrayList<>();
+            while (rs.next()) {
+                clothesLista.add(row2object(rs));
+            }
+            return clothesLista;
+        } catch (SQLException e) {
+            throw new ShopException(e.getMessage(), e);
+        }
     }
 
     /**
