@@ -4,6 +4,8 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Category;
 import ba.unsa.etf.rpr.exceptions.ShopException;
 
+import java.util.List;
+
 /**
  * Business Logic Layer for management of Categories
  *
@@ -47,4 +49,9 @@ public class CategoryManager {
         validateCategoryName(cat.getName());
         return DaoFactory.categoryDao().update(cat);
     }
+
+    public List<Category> getAll() throws ShopException {
+        return DaoFactory.categoryDao().getAll();
+    }
+
 }
