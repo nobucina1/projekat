@@ -35,7 +35,7 @@ public class ClothesDaoSQLImpl extends AbstractDao<Clothes> implements ClothesDa
 
     @Override
     public Map<String, Object> object2row(Clothes object) {
-        Map<String, Object> item = new TreeMap<String, Object>();
+        Map<String, Object> item = new TreeMap<>();
         item.put("idclothes", object.getId());
         item.put("clothes_name", object.getClothes_name());
         item.put("category_id", object.getIdcategory().getId());
