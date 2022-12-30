@@ -33,5 +33,7 @@ public class ClothesManager {
         DaoFactory.clothesDao().update(c);
     }
 
-
+    public Clothes add(Clothes c) throws ShopException {
+        return DaoFactory.clothesDao().add(c);
+    }
 }
