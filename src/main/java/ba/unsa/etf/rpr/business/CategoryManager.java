@@ -42,4 +42,9 @@ public class CategoryManager {
             throw e;
         }
     }
+
+    public Category update (Category cat) throws ShopException {
+        validateCategoryName(cat.getName());
+        return DaoFactory.categoryDao().update(cat);
+    }
 }
