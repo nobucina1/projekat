@@ -24,4 +24,8 @@ public class ClothesManager {
     public void delete(int id) throws ShopException {
         DaoFactory.clothesDao().delete(id);
     }
+
+    public Clothes getById(int clothesId) throws ShopException {
+        return DaoFactory.clothesDao().getById(clothesId);
+    }
 }
