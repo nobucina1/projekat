@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * MySQL implementation of the DAO
+ * MySQL's implementation of the DAO
  * @author Nermin Obucina
  */
 public class CategoryDaoSQLImpl extends AbstractDao<Category> implements CategoryDao{
@@ -31,7 +31,7 @@ public class CategoryDaoSQLImpl extends AbstractDao<Category> implements Categor
 
     @Override
     public Map<String, Object> object2row(Category object) {
-        Map<String, Object> row = new TreeMap<String, Object>();
+        Map<String, Object> row = new TreeMap<>();
         row.put("idcategory", object.getId());
         row.put("name", object.getName());
         return row;
