@@ -21,4 +21,7 @@ public class ClothesManager {
         return DaoFactory.clothesDao().searchByText(text);
     }
 
+    public void delete(int id) throws ShopException {
+        DaoFactory.clothesDao().delete(id);
+    }
 }
