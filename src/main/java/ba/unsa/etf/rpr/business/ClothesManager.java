@@ -28,4 +28,10 @@ public class ClothesManager {
     public Clothes getById(int clothesId) throws ShopException {
         return DaoFactory.clothesDao().getById(clothesId);
     }
+
+    public void update (Clothes c) throws ShopException {
+        DaoFactory.clothesDao().update(c);
+    }
+
+
 }
