@@ -31,4 +31,15 @@ public class CategoryManager {
             throw e;
         }
     }
+
+    public void delete (int categoryId) throws ShopException {
+        try {
+            DaoFactory.categoryDao().delete(categoryId);
+        }catch(ShopException e) {
+            if (e.getMessage().contains("FOREIGN KEY")) {
+                throw new ShopException("Cannot delete category which is related to clothes. First delete related clothes before deleting category.");
+            }
+            throw e;
+        }
+    }
 }
