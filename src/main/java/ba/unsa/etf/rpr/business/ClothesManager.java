@@ -16,4 +16,9 @@ public class ClothesManager {
     public List<Clothes> getAll() throws ShopException {
         return DaoFactory.clothesDao().getAll();
     }
+
+    public List<Clothes> searchClothes(String text) throws ShopException {
+        return DaoFactory.clothesDao().searchByText(text);
+    }
+
 }
