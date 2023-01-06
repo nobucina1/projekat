@@ -12,7 +12,7 @@ public class User implements Idable {
     private String name;
     private String surname;
     private String mail;
-    private String address;
+    private String password;
 
     @Override
     public int getId() {
@@ -48,12 +48,12 @@ public class User implements Idable {
         this.mail = mail;
     }
 
-    public String getAddress() {
-        return address;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -61,12 +61,12 @@ public class User implements Idable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return iduser == user.iduser && name.equals(user.name) && surname.equals(user.surname) && mail.equals(user.mail) && address.equals(user.address);
+        return iduser == user.iduser && name.equals(user.name) && surname.equals(user.surname) && mail.equals(user.mail) && password.equals(user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(iduser, name, surname, mail, address);
+        return Objects.hash(iduser, name, surname, mail, password);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class User implements Idable {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", mail='" + mail + '\'' +
-                ", address='" + address + '\'' +
+                ", address='" + password + '\'' +
                 '}';
     }
 

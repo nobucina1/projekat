@@ -14,7 +14,7 @@ import java.util.TreeMap;
 public class CategoryDaoSQLImpl extends AbstractDao<Category> implements CategoryDao{
 
     public CategoryDaoSQLImpl() {
-        super("Categories");
+        super("categories");
     }
 
     @Override
@@ -31,7 +31,7 @@ public class CategoryDaoSQLImpl extends AbstractDao<Category> implements Categor
 
     @Override
     public Map<String, Object> object2row(Category object) {
-        Map<String, Object> row = new TreeMap<>();
+        Map<String, Object> row = new TreeMap<String, Object>();
         row.put("idcategory", object.getId());
         row.put("name", object.getName());
         return row;

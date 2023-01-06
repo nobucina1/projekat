@@ -15,7 +15,7 @@ import java.util.TreeMap;
 
 public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
     public UserDaoSQLImpl() {
-        super("Users");
+        super("user");
     }
 
     @Override
@@ -26,7 +26,7 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
             q.setName(rs.getString("name"));
             q.setSurname(rs.getString("surname"));
             q.setMail(rs.getString("mail"));
-            q.setAddress(rs.getString("address"));
+            q.setPassword(rs.getString("password"));
             return q;
         } catch (Exception e) {
             throw new ShopException(e.getMessage(), e);
@@ -40,7 +40,7 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
         item.put("name", object.getName());
         item.put("surname", object.getSurname());
         item.put("mail", object.getMail());
-        item.put("address", object.getAddress());
+        item.put("password", object.getPassword());
         return item;
     }
 

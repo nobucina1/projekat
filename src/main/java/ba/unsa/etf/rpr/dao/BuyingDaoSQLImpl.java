@@ -14,7 +14,7 @@ import java.util.TreeMap;
  */
 public class BuyingDaoSQLImpl extends AbstractDao<Buying> implements BuyingDao{
     public BuyingDaoSQLImpl() {
-        super("Buying");
+        super("buying");
     }
 
     @Override
@@ -33,7 +33,7 @@ public class BuyingDaoSQLImpl extends AbstractDao<Buying> implements BuyingDao{
 
     @Override
     public Map<String, Object> object2row(Buying object) {
-        Map<String, Object> item = new TreeMap<>();
+        Map<String, Object> item = new TreeMap<String, Object>();
         item.put("idbuying", object.getId());
         item.put("date_of_buying", object.getDate_of_buying());
         item.put("iduser", object.getIduser().getId());
