@@ -12,8 +12,8 @@ public class MainFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         System.out.println(getClass());
-        Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));
-        stage.setTitle("User Login");
+        Parent root = FXMLLoader.load(getClass().getResource("/register.fxml"));
+        stage.setTitle("User registration");
         stage.setScene(new Scene(root, 800, 500));
         stage.show();
     }
