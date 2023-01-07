@@ -64,7 +64,7 @@ public class LoginController {
 
         if (validation) {
             showAlert(Alert.AlertType.CONFIRMATION, owner, "Login Successful!",
-                    "Welcome :)" + null);
+                    "Welcome :)");
         }
         else {
             showAlert(Alert.AlertType.ERROR,owner,"Login Unsuccessful!","Email or password incorrect, if you don't have an account please register.");
