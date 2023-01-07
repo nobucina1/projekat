@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class JdbcDao {
     // Replace below database url, username and password with your actual database credentials
-    private static final String DATABASE_URL = "jdbc:mysql://sql.freedb.tech";
+    private static final String DATABASE_URL = "jdbc:mysql://sql.freedb.tech:3306/freedb_RPRdatabase";
     private static final String DATABASE_USERNAME = "freedb_nobucina1";
     private static final String DATABASE_PASSWORD = "#y3q4bffwgJ%HAu";
     private static final String SELECT_QUERY = "SELECT * FROM user WHERE mail = ? and password = ?";
