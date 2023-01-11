@@ -40,7 +40,7 @@ public class LoginController {
         stage.show();
     }
 
-    public void login(ActionEvent event) throws SQLException {
+    public void login(ActionEvent event) throws SQLException, IOException {
         Window owner = submitButton.getScene().getWindow();
 
         System.out.println(mailField.getText());
@@ -65,6 +65,11 @@ public class LoginController {
         if (validation) {
             showAlert(Alert.AlertType.CONFIRMATION, owner, "Login Successful!",
                     "Welcome :)");
+            root = FXMLLoader.load(getClass().getResource("/home.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
         else {
             showAlert(Alert.AlertType.ERROR,owner,"Login Unsuccessful!","Email or password incorrect, if you don't have an account please register.");
