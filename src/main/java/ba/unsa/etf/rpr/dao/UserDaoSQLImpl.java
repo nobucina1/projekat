@@ -15,7 +15,7 @@ import java.util.TreeMap;
 
 public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
     public UserDaoSQLImpl() {
-        super("user");
+        super("user","iduser");
     }
 
     @Override

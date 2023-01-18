@@ -11,10 +11,12 @@ import java.util.*;
 public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     private Connection connection;
     private String tableName;
+    private String idName;
 
-    public AbstractDao(String tableName) {
+    public AbstractDao(String tableName, String idName) {
         try {
             this.tableName = tableName;
+            this.idName = idName;
             Properties p = new Properties();
             p.load(ClassLoader.getSystemResource("db.properties").openStream());
             String url = p.getProperty("url");
@@ -41,7 +43,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     public abstract Map<String, Object> object2row(T object);
 
     public T getById(int id) throws ShopException {
-        String query = "SELECT * FROM " + this.tableName + " WHERE id = ?";
+        String query = "SELECT * FROM " + this.tableName + " WHERE " + this.idName + " = ?";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, id);

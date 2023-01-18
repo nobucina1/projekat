@@ -14,7 +14,7 @@ import java.util.TreeMap;
  */
 public class BuyingDaoSQLImpl extends AbstractDao<Buying> implements BuyingDao{
     public BuyingDaoSQLImpl() {
-        super("buying");
+        super("buying","idbuying");
     }
 
     @Override

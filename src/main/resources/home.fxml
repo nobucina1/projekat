@@ -42,21 +42,22 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
-                <TableView fx:id="clothesTable" layoutX="14.0" layoutY="14.0" prefHeight="371.0" prefWidth="772.0">
-                    <columns>
-                        <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
-                        <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
-                        <TableColumn fx:id="categoryColumn" prefWidth="75.0" text="Category" />
-                    </columns>
-                </TableView>
                 <Label layoutX="14.0" layoutY="391.0" text="Search:" />
                 <TextField fx:id="searchField" layoutX="71.0" layoutY="386.0" prefHeight="25.0" prefWidth="224.0" />
                 <Button fx:id="searchButton" layoutX="307.0" layoutY="386.0" mnemonicParsing="false" text="Search" />
                 <Label layoutX="364.0" layoutY="391.0" text="Filter by category:" />
-                <ListView fx:id="categoryList" layoutX="472.0" layoutY="386.0" prefHeight="66.0" prefWidth="140.0" />
+                <ListView fx:id="categoryListMenu" layoutX="472.0" layoutY="386.0" prefHeight="66.0" prefWidth="140.0" />
                 <Button fx:id="addButton" layoutX="651.0" layoutY="386.0" mnemonicParsing="false" text="Add" />
                 <Button fx:id="editButton" layoutX="651.0" layoutY="416.0" mnemonicParsing="false" text="Edit" />
                 <Button fx:id="deleteButton" layoutX="651.0" layoutY="446.0" mnemonicParsing="false" text="Delete" />
+            <ListView fx:id="nameList" layoutY="27.0" prefHeight="352.0" prefWidth="71.0" />
+            <Label layoutX="5.0" layoutY="5.0" prefHeight="18.0" prefWidth="70.0" text="Name" />
+            <ListView fx:id="categoryList" layoutX="83.0" layoutY="27.0" prefHeight="352.0" prefWidth="71.0" />
+            <Label layoutX="83.0" layoutY="6.0" prefHeight="18.0" prefWidth="70.0" text="Category" />
+            <ListView fx:id="sizeList" layoutX="170.0" layoutY="27.0" prefHeight="353.0" prefWidth="71.0" />
+            <Label layoutX="172.0" layoutY="7.0" prefHeight="18.0" prefWidth="68.0" text="Size" />
+            <ListView fx:id="priceList" layoutX="259.0" layoutY="27.0" prefHeight="354.0" prefWidth="71.0" />
+            <Label layoutX="258.0" layoutY="8.0" prefHeight="18.0" prefWidth="71.0" text="Price" />
             </children>
         </AnchorPane>
     </center>
