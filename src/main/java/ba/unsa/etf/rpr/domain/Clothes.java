@@ -1,5 +1,8 @@
 package ba.unsa.etf.rpr.domain;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 import java.util.Objects;
 
 /**
@@ -10,10 +13,10 @@ import java.util.Objects;
 public class Clothes implements Idable{
 
     private int idclothes;
-    private String clothes_name;
+    private SimpleStringProperty clothes_name;
     private Category idcategory;
-    private int size;
-    private int price;
+    private IntegerProperty size;
+    private IntegerProperty price;
 
     @Override
     public int getId() {
@@ -26,11 +29,11 @@ public class Clothes implements Idable{
     }
 
     public String getClothes_name() {
-        return clothes_name;
+        return clothes_name.get();
     }
 
     public void setClothes_name(String clothes_name) {
-        this.clothes_name = clothes_name;
+        this.clothes_name.set(clothes_name);
     }
 
     public Category getIdcategory() {
@@ -42,19 +45,19 @@ public class Clothes implements Idable{
     }
 
     public int getSize() {
-        return size;
+        return size.get();
     }
 
     public void setSize(int size) {
-        this.size = size;
+        this.size.set(size);
     }
 
     public int getPrice() {
-        return price;
+        return price.get();
     }
 
     public void setPrice(int price) {
-        this.price = price;
+        this.price.set(price);
     }
 
     @Override
@@ -70,14 +73,26 @@ public class Clothes implements Idable{
         return Objects.hash(idclothes, clothes_name, idcategory, size, price);
     }
 
+    public SimpleStringProperty clothes_nameProperty() {
+        return clothes_name;
+    }
+
+    public IntegerProperty sizeProperty() {
+        return size;
+    }
+
+    public IntegerProperty priceProperty() {
+        return price;
+    }
+
     @Override
     public String toString() {
         return "Clothes{" +
                 "idclothes=" + idclothes +
-                ", clothes_name='" + clothes_name + '\'' +
+                ", clothes_name='" + clothes_name.get() + '\'' +
                 ", idcategory=" + idcategory +
-                ", size=" + size +
-                ", price=" + price +
+                ", size=" + size.get() +
+                ", price=" + price.get() +
                 '}';
     }
 }

@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.domain;
 
+import javafx.beans.property.SimpleStringProperty;
+
 import java.util.Objects;
 
 /**
@@ -10,7 +12,7 @@ import java.util.Objects;
 public class Category implements Idable {
 
     private int idcategory;
-    private String name;
+    private SimpleStringProperty name;
 
     @Override
     public void setId(int idcategory) {
@@ -23,11 +25,11 @@ public class Category implements Idable {
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
 
     @Override
@@ -43,11 +45,12 @@ public class Category implements Idable {
         return Objects.hash(idcategory, name);
     }
 
+    public SimpleStringProperty nameProperty() {
+        return name;
+    }
+
     @Override
     public String toString() {
-        return "category{" +
-                "idcategory=" + idcategory +
-                ", name='" + name + '\'' +
-                '}';
+        return name.get();
     }
 }

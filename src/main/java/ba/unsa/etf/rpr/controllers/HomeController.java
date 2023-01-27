@@ -1,6 +1,8 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.CategoryManager;
 import ba.unsa.etf.rpr.business.ClothesManager;
+import ba.unsa.etf.rpr.domain.Category;
 import ba.unsa.etf.rpr.domain.Clothes;
 import ba.unsa.etf.rpr.exceptions.ShopException;
 import javafx.collections.FXCollections;
@@ -34,7 +36,10 @@ public class HomeController {
     public TextField searchClothes;
     @FXML
     public Button searchButton;
+    @FXML
+    public ListView categoryListMenu;
     private ClothesManager manager = new ClothesManager();
+    private CategoryManager categoryManager = new CategoryManager();
     @FXML
     public ListView nameList;
 
@@ -66,7 +71,39 @@ public class HomeController {
         sizeList.setItems(size);
         priceList.setItems(price);
 
-
+        /*clothingImage = new HashMap<>();
+        clothingImage.put("papuce", new Image(getClass().getResource("/img/papuce.jpg").toString()));
+        nameList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                String selectedItem = (String) nameList.getSelectionModel().getSelectedItem();
+                Image image = clothingImage.get(selectedItem);
+                imageView.setImage(image);
+            }
+        });*/
+        categoryListMenu.setItems(FXCollections.observableList(categoryManager.getAll()));
+        categoryListMenu.getSelectionModel().selectedItemProperty().addListener((obs,oldItem, newItem) -> {
+           Clothes oldClothes = (Clothes) oldItem;
+           Clothes newClothes = (Clothes) newItem;
+            if (oldItem != null) {
+               nameList.itemsProperty().unbindBidirectional(oldClothes.clothes_nameProperty());
+               categoryList.itemsProperty().unbindBidirectional(oldClothes.getIdcategory().nameProperty());
+               sizeList.itemsProperty().unbindBidirectional(oldClothes.sizeProperty());
+               priceList.itemsProperty().unbindBidirectional(oldClothes.priceProperty());
+           }
+            if(newItem != null) {
+                nameList.itemsProperty().bindBidirectional(newClothes.clothes_nameProperty());
+                categoryList.itemsProperty().bindBidirectional(newClothes.getIdcategory().nameProperty());
+                sizeList.itemsProperty().bindBidirectional(newClothes.sizeProperty());
+                priceList.itemsProperty().bindBidirectional(newClothes.priceProperty());
+            }
+            else {
+                nameList.setItems(null);
+                categoryList.setItems(null);
+                sizeList.setItems(null);
+                priceList.setItems(null);
+            }
+        });
     }
 
     public void searchClothes(ActionEvent event) {
