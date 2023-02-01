@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Category implements Idable {
 
     private int idcategory;
-    private SimpleStringProperty name;
+    private String name;
 
     @Override
     public void setId(int idcategory) {
@@ -25,11 +25,11 @@ public class Category implements Idable {
     }
 
     public String getName() {
-        return name.get();
+        return name;
     }
 
     public void setName(String name) {
-        this.name.set(name);
+        this.name = name;
     }
 
     @Override
@@ -45,12 +45,8 @@ public class Category implements Idable {
         return Objects.hash(idcategory, name);
     }
 
-    public SimpleStringProperty nameProperty() {
-        return name;
-    }
-
     @Override
     public String toString() {
-        return name.get();
+        return name;
     }
 }

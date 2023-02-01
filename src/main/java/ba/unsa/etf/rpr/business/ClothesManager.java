@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.business;
 
 import ba.unsa.etf.rpr.dao.DaoFactory;
+import ba.unsa.etf.rpr.domain.Category;
 import ba.unsa.etf.rpr.domain.Clothes;
 import ba.unsa.etf.rpr.exceptions.ShopException;
 
@@ -19,6 +20,10 @@ public class ClothesManager {
 
     public List<Clothes> searchClothes(String text) throws ShopException {
         return DaoFactory.clothesDao().searchByText(text);
+    }
+
+    public List<Clothes> searchByCategory(Category category) throws ShopException {
+        return DaoFactory.clothesDao().searchByCategory(category);
     }
 
     public void delete(int id) throws ShopException {

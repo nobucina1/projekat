@@ -13,10 +13,10 @@ import java.util.Objects;
 public class Clothes implements Idable{
 
     private int idclothes;
-    private SimpleStringProperty clothes_name;
+    private String clothes_name;
     private Category idcategory;
-    private IntegerProperty size;
-    private IntegerProperty price;
+    private int size;
+    private int price;
 
     @Override
     public int getId() {
@@ -29,11 +29,11 @@ public class Clothes implements Idable{
     }
 
     public String getClothes_name() {
-        return clothes_name.get();
+        return clothes_name;
     }
 
     public void setClothes_name(String clothes_name) {
-        this.clothes_name.set(clothes_name);
+        this.clothes_name = clothes_name;
     }
 
     public Category getIdcategory() {
@@ -45,19 +45,19 @@ public class Clothes implements Idable{
     }
 
     public int getSize() {
-        return size.get();
+        return size;
     }
 
     public void setSize(int size) {
-        this.size.set(size);
+        this.size = size;
     }
 
     public int getPrice() {
-        return price.get();
+        return price;
     }
 
     public void setPrice(int price) {
-        this.price.set(price);
+        this.price = price;
     }
 
     @Override
@@ -73,26 +73,14 @@ public class Clothes implements Idable{
         return Objects.hash(idclothes, clothes_name, idcategory, size, price);
     }
 
-    public SimpleStringProperty clothes_nameProperty() {
-        return clothes_name;
-    }
-
-    public IntegerProperty sizeProperty() {
-        return size;
-    }
-
-    public IntegerProperty priceProperty() {
-        return price;
-    }
-
     @Override
     public String toString() {
         return "Clothes{" +
                 "idclothes=" + idclothes +
-                ", clothes_name='" + clothes_name.get() + '\'' +
+                ", clothes_name='" + clothes_name + '\'' +
                 ", idcategory=" + idcategory +
-                ", size=" + size.get() +
-                ", price=" + price.get() +
+                ", size=" + size +
+                ", price=" + price +
                 '}';
     }
 }
