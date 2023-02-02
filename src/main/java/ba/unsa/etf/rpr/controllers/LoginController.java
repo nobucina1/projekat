@@ -1,7 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
-import ba.unsa.etf.rpr.dao.JdbcDao;
-import ba.unsa.etf.rpr.dao.UserDaoSQLImpl;
+import ba.unsa.etf.rpr.business.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,8 +59,8 @@ public class LoginController {
         String mail = mailField.getText();
         String password = passwordField.getText();
 
-        UserDaoSQLImpl userDaoSQL = new UserDaoSQLImpl();
-        boolean validation = userDaoSQL.validate(mail, password);
+        UserManager userManager = new UserManager();
+        boolean validation = userManager.validate(mail, password);
 
         if (validation) {
             showAlert(Alert.AlertType.CONFIRMATION, owner, "Login Successful!",

@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr.controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import ba.unsa.etf.rpr.dao.JdbcDao;
+import ba.unsa.etf.rpr.business.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -84,8 +84,8 @@ public class RegisterController {
         String mail = mailField.getText();
         String password = passwordField.getText();
 
-        JdbcDao jdbcDao = new JdbcDao();
-        jdbcDao.insertRecord(name, surname, mail, password);
+        UserManager userManager = new UserManager();
+        userManager.insertRecord(name, surname, mail, password);
 
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Successful!",
                 "Welcome " + nameField.getText());
