@@ -13,7 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.util.*;
 
 public class HomeController {
     @FXML
@@ -45,6 +44,7 @@ public class HomeController {
         priceColumn.setCellValueFactory(new PropertyValueFactory<Clothes,Integer>("price"));
         ObservableList<Clothes> items = FXCollections.observableList(manager.getAll());
         tableView.setItems(items);
+        imageView.setImage(new Image("/img/logo.jpg"));
 
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             Clothes c = (Clothes) newValue;
@@ -64,7 +64,6 @@ public class HomeController {
                 }
             }
         });
-
     }
 
     public void searchClothes(ActionEvent event) throws ShopException {

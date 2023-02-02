@@ -14,8 +14,70 @@ import java.util.TreeMap;
  */
 
 public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
+    private static final String SELECT_QUERY = "SELECT * FROM user WHERE mail = ? and password = ?";
+    private static final String INSERT_QUERY = "INSERT INTO user (name, surname, mail, password) VALUES (?, ?, ?, ?)";
     public UserDaoSQLImpl() {
         super("user","iduser");
+    }
+
+    @Override
+    public boolean validate(String mail, String password) throws SQLException {
+
+        // Step 1: Establishing a Connection and
+        // try-with-resource statement will auto close the connection.
+        try {
+                PreparedStatement stmt = getConnection().prepareStatement(SELECT_QUERY);
+                stmt.setString(1,mail);
+                stmt.setString(2, password);
+
+                System.out.println(stmt);
+
+            ResultSet resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                return true;
+            }
+
+
+        } catch (SQLException e) {
+            // print SQL exception information
+            printSQLException(e);
+        }
+        return false;
+    }
+
+    @Override
+    public void insertRecord(String name, String surname, String mail, String password) throws SQLException {
+
+        try {
+            PreparedStatement stmt = getConnection().prepareStatement(INSERT_QUERY);
+            stmt.setString(1,name);
+            stmt.setString(2, surname);
+            stmt.setString(3,mail);
+            stmt.setString(4,password);
+
+            System.out.println(stmt);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            // print SQL exception information
+            printSQLException(e);
+        }
+    }
+
+    public static void printSQLException(SQLException ex) {
+        for (Throwable e: ex) {
+            if (e instanceof SQLException) {
+                e.printStackTrace(System.err);
+                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+                System.err.println("Message: " + e.getMessage());
+                Throwable t = ex.getCause();
+                while (t != null) {
+                    System.out.println("Cause: " + t);
+                    t = t.getCause();
+                }
+            }
+        }
     }
 
     @Override

@@ -5,6 +5,7 @@ import ba.unsa.etf.rpr.domain.Clothes;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.ShopException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -29,5 +30,9 @@ public interface UserDao extends Dao<User>{
      * @return list of users
      */
     List<User> searchBySurname(String text) throws ShopException;
+
+    public boolean validate(String mail, String password) throws SQLException;
+
+    public void insertRecord(String name, String surname, String mail, String password) throws SQLException;
 
 }
