@@ -53,6 +53,17 @@ public class HomeController {
             imageView.setImage(newImage);
         });
 
+        categoryFilter.setItems(FXCollections.observableList(categoryManager.getAll()));
+        categoryFilter.valueProperty().addListener((obs, oldClothes, newClothes) -> {
+            if (newClothes != null) {
+                try {
+                    ObservableList<Clothes> filteredClothingData = FXCollections.observableArrayList(manager.searchByCategory((Category) newClothes));
+                    tableView.setItems(filteredClothingData);
+                } catch (ShopException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 
