@@ -57,6 +57,7 @@ public class HomeController {
     }
 
     public void searchClothes(ActionEvent event) throws ShopException {
-
+        ObservableList<Clothes> items = FXCollections.observableList(manager.searchClothes(searchClothes.getText()));
+        tableView.setItems(items);
     }
 }
