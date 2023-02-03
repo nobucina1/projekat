@@ -14,6 +14,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import javax.swing.*;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class HomeController {
     @FXML
     public ImageView imageView;
@@ -47,10 +52,19 @@ public class HomeController {
         imageView.setImage(new Image("/img/logo.jpg"));
 
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
-            Clothes c = (Clothes) newValue;
-            // update the image view here
-            Image newImage = new Image(getClass().getResource("/img/" + c.getClothes_name() + ".jpg").toString());
-            imageView.setImage(newImage);
+            if(newValue != null) {
+                Clothes c = (Clothes) newValue;
+                String imgName = c.getClothes_name();
+                File file = new File("C:\\Users\\nermi\\projekat\\src\\main\\resources\\img\\" + imgName + ".jpg");
+                if (file.exists() && !file.isDirectory()) {
+                    // update the image view here
+                    Image newImage = new Image(getClass().getResource("/img/" + c.getClothes_name() + ".jpg").toString());
+                    imageView.setImage(newImage);
+                }
+                else {
+                    imageView.setImage(new Image("/img/noimage.jpg"));
+                }
+            }
         });
 
         categoryFilter.setItems(FXCollections.observableList(categoryManager.getAll()));
@@ -64,6 +78,10 @@ public class HomeController {
                 }
             }
         });
+    }
+
+    public void showImage (ActionEvent event) {
+
     }
 
     @FXML

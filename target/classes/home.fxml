@@ -48,7 +48,7 @@
                 <Button fx:id="searchButton" layoutX="307.0" layoutY="386.0" mnemonicParsing="false" onAction="#searchClothes" text="Search" />
                 <Label layoutX="364.0" layoutY="391.0" text="Filter by category:" />
                 <Button fx:id="addButton" layoutX="651.0" layoutY="386.0" mnemonicParsing="false" text="Add" />
-                <Button fx:id="editButton" layoutX="651.0" layoutY="416.0" mnemonicParsing="false" text="Delete" />
+                <Button fx:id="editButton" layoutX="651.0" layoutY="416.0" mnemonicParsing="false" onAction="#deleteClothes" text="Delete" />
                 <Button fx:id="deleteButton" layoutX="651.0" layoutY="446.0" mnemonicParsing="false" text="Order" />
             <ImageView fx:id="imageView" fitHeight="265.0" fitWidth="338.0" layoutX="411.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
             <ChoiceBox fx:id="categoryFilter" layoutX="471.0" layoutY="387.0" prefWidth="150.0" />
