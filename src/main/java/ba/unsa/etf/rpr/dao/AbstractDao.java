@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.domain.Clothes;
 import ba.unsa.etf.rpr.domain.Idable;
 import ba.unsa.etf.rpr.exceptions.ShopException;
 import java.sql.*;
@@ -100,7 +101,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         int counter = 0;
         for (Map.Entry<String, Object> entry : row.entrySet()) {
             counter++;
-            if (entry.getKey().equals("id")) continue; //skip insertion of id due autoincrement
+            if (entry.getKey().equals(idName)) continue; //skip insertion of id due autoincrement
             columns.append(entry.getKey());
             questions.append("?");
             if (row.size() != counter) {
@@ -123,7 +124,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         int counter = 0;
         for (Map.Entry<String, Object> entry : row.entrySet()) {
             counter++;
-            if (entry.getKey().equals("id")) continue; //skip update of id due where clause
+            if (entry.getKey().equals(idName)) continue; //skip update of id due where clause
             columns.append(entry.getKey()).append("= ?");
             if (row.size() != counter) {
                 columns.append(",");
@@ -146,7 +147,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
             // bind params. IMPORTANT treeMap is used to keep columns sorted so params are bind correctly
             int counter = 1;
             for (Map.Entry<String, Object> entry : row.entrySet()) {
-                if (entry.getKey().equals("id")) continue; // skip ID
+                if (entry.getKey().equals(this.idName)) continue; // skip ID
                 stmt.setObject(counter, entry.getValue());
                 counter++;
             }
@@ -176,7 +177,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
             PreparedStatement stmt = getConnection().prepareStatement(builder.toString());
             int counter = 1;
             for (Map.Entry<String, Object> entry : row.entrySet()) {
-                if (entry.getKey().equals("id")) continue; // skip ID
+                if (entry.getKey().equals(this.idName)) continue; // skip ID
                 stmt.setObject(counter, entry.getValue());
                 counter++;
             }

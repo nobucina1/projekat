@@ -9,17 +9,23 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.IOException;
 
 public class HomeController {
+    private Parent root;
+    private Stage stage;
+    private Scene scene;
     @FXML
     public ImageView imageView;
     @FXML
@@ -80,10 +86,6 @@ public class HomeController {
         });
     }
 
-    public void showImage (ActionEvent event) {
-
-    }
-
     @FXML
     public void searchClothes(ActionEvent event) throws ShopException {
         ObservableList<Clothes> items = FXCollections.observableList(manager.searchClothes(searchClothes.getText()));
@@ -103,5 +105,14 @@ public class HomeController {
                 alert.setContentText("Please select a clothing to delete.");
                 alert.showAndWait();
             }
+    }
+
+    @FXML
+    public void switchToAdd(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/add.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
