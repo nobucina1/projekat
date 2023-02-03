@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.business.UserManager;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.ShopException;
 import java.sql.*;
@@ -47,7 +48,6 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
 
     @Override
     public void insertRecord(String name, String surname, String mail, String password) throws SQLException {
-
         try {
             PreparedStatement stmt = getConnection().prepareStatement(INSERT_QUERY);
             stmt.setString(1,name);

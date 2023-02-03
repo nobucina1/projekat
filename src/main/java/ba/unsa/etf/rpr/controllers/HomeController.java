@@ -66,8 +66,24 @@ public class HomeController {
         });
     }
 
+    @FXML
     public void searchClothes(ActionEvent event) throws ShopException {
         ObservableList<Clothes> items = FXCollections.observableList(manager.searchClothes(searchClothes.getText()));
         tableView.setItems(items);
+    }
+
+    @FXML
+    public void deleteClothes(ActionEvent event) throws ShopException {
+            Clothes selectedClothes = (Clothes) tableView.getSelectionModel().getSelectedItem();
+            if (selectedClothes != null) {
+                manager.delete(selectedClothes.getId());
+                tableView.getItems().remove(selectedClothes);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("No clothing selected");
+                alert.setContentText("Please select a clothing to delete.");
+                alert.showAndWait();
+            }
     }
 }
