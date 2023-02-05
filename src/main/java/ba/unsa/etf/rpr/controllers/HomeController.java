@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class HomeController {
     private Parent root;
@@ -49,6 +50,7 @@ public class HomeController {
 
     @FXML
     public void initialize() throws ShopException {
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         nameColumn.setCellValueFactory(new PropertyValueFactory<Clothes,String>("clothes_name"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<Clothes,String>("idcategory"));
         sizeColumn.setCellValueFactory(new PropertyValueFactory<Clothes,Integer>("size"));
@@ -58,8 +60,8 @@ public class HomeController {
         imageView.setImage(new Image("/img/logo.jpg"));
 
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
-            if(newValue != null) {
-                Clothes c = (Clothes) newValue;
+            Clothes c = (Clothes) newValue;
+            if(c != null) {
                 String imgName = c.getClothes_name();
                 File file = new File("C:\\Users\\nermi\\projekat\\src\\main\\resources\\img\\" + imgName + ".jpg");
                 if (file.exists() && !file.isDirectory()) {
@@ -70,6 +72,9 @@ public class HomeController {
                 else {
                     imageView.setImage(new Image("/img/noimage.jpg"));
                 }
+            }
+            else {
+                tableView.getSelectionModel().clearSelection();
             }
         });
 
@@ -110,6 +115,20 @@ public class HomeController {
     @FXML
     public void switchToAdd(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/add.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void switchToOrder(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/order.fxml"));
+        root = fxmlLoader.load();
+        OrderController orderController = fxmlLoader.getController();
+        ObservableList selectedClothes = tableView.getSelectionModel().getSelectedItems();
+        orderController.setSelectedItems(selectedClothes);
+
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

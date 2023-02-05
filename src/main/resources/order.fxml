@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controllers.OrderController">
+   <children>
+      <ListView fx:id="listView" layoutX="14.0" layoutY="51.0" prefHeight="200.0" prefWidth="108.0" />
+      <Label layoutX="14.0" layoutY="8.0" prefHeight="30.0" prefWidth="172.0" text="ORDER">
+         <font>
+            <Font name="Calibri Bold" size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="265.0" prefHeight="27.0" prefWidth="89.0" text="Total price:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="price" alignment="CENTER_RIGHT" layoutX="13.0" layoutY="292.0" prefHeight="27.0" prefWidth="90.0" text="price">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="172.0" layoutY="207.0" prefHeight="27.0" prefWidth="108.0" text="Credit card number:" />
+      <TextField layoutX="280.0" layoutY="208.0" />
+      <Label layoutX="441.0" layoutY="211.0" prefHeight="18.0" prefWidth="31.0" text="CVC:" />
+      <TextField layoutX="472.0" layoutY="207.0" prefHeight="26.0" prefWidth="45.0" />
+      <Label layoutX="170.0" layoutY="130.0" prefHeight="26.0" prefWidth="31.0" text="State:" />
+      <TextField layoutX="205.0" layoutY="130.0" />
+      <Label layoutX="379.0" layoutY="134.0" prefHeight="18.0" prefWidth="25.0" text="City:" />
+      <Label layoutX="172.0" layoutY="173.0" text="Address:" />
+      <TextField layoutX="225.0" layoutY="169.0" />
+      <Label layoutX="379.0" layoutY="173.0" text="Postcode:" />
+      <TextField layoutX="431.0" layoutY="168.0" prefHeight="26.0" prefWidth="52.0" />
+      <TextField layoutX="408.0" layoutY="130.0" />
+      <Label layoutX="203.0" layoutY="51.0" prefHeight="18.0" prefWidth="281.0" text="How do you want to pay?">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <CheckBox layoutX="205.0" layoutY="81.0" mnemonicParsing="false" text="At the door" />
+      <CheckBox layoutX="331.0" layoutY="81.0" mnemonicParsing="false" text="With credit card" />
+      <Button fx:id="submitButton" layoutX="430.0" layoutY="279.0" mnemonicParsing="false" onAction="#onOrder" text="Submit" />
+      <Button fx:id="cancel" layoutX="506.0" layoutY="279.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
+   </children>
+</AnchorPane>
