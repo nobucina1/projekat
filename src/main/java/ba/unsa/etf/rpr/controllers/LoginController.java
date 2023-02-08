@@ -16,22 +16,27 @@ import javafx.stage.Window;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * JavaFX controller for User log in
+ *
+ * @author Nermin Obucina
+ */
 public class LoginController {
 
     @FXML
     private TextField mailField;
-
     @FXML
     private TextField passwordField;
+
     private Parent root;
     private Stage stage;
     private Scene scene;
 
     @FXML
     private Button registerButton;
-
     @FXML
     private Button submitButton;
+
     public void switchToRegistration(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/register.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

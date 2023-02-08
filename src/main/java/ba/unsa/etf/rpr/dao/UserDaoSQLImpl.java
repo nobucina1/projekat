@@ -21,11 +21,15 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
         super("user","iduser");
     }
 
+    /**
+     * Method for validation of user
+     * @param mail
+     * @param password
+     * @return
+     * @throws SQLException
+     */
     @Override
     public boolean validate(String mail, String password) throws SQLException {
-
-        // Step 1: Establishing a Connection and
-        // try-with-resource statement will auto close the connection.
         try {
                 PreparedStatement stmt = getConnection().prepareStatement(SELECT_QUERY);
                 stmt.setString(1,mail);
@@ -40,12 +44,19 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
 
 
         } catch (SQLException e) {
-            // print SQL exception information
             printSQLException(e);
         }
         return false;
     }
 
+    /**
+     * Method for setting user's details in database
+     * @param name
+     * @param surname
+     * @param mail
+     * @param password
+     * @throws SQLException
+     */
     @Override
     public void insertRecord(String name, String surname, String mail, String password) throws SQLException {
         try {

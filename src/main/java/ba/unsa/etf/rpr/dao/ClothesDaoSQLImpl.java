@@ -12,6 +12,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * MySQL Implementation of DAO
+ *
+ * @author Nermin Obucina
+ */
+
 public class ClothesDaoSQLImpl extends AbstractDao<Clothes> implements ClothesDao{
     public ClothesDaoSQLImpl() {
         super("clothes","idclothes");

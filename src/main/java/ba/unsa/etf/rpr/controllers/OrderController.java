@@ -19,6 +19,11 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 
+/**
+ * JavaFX controller for ordering clothes
+ *
+ * @author Nermin Obucina
+ */
 public class OrderController {
 
     @FXML
@@ -35,21 +40,21 @@ public class OrderController {
     private Stage stage;
     private Scene scene;
 
-    @FXML
-    public void initialize() {
-        double finalPrice = 0;
-        for(Clothes c: this.selectedClothes) {
-            finalPrice += c.getPrice();
-        }
-        price.setText(String.format("%.2f", finalPrice));
-    }
-
+    /**
+     * submit button event handler
+     * @param event
+     */
     public void onOrder(ActionEvent event) {
         Window owner = submitButton.getScene().getWindow();
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Order successful!",
                 "Clothes are on their way :)");
     }
 
+    /**
+     * cancel button event handler
+     * @param event
+     * @throws IOException
+     */
     public void onCancel(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/home.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -58,12 +63,17 @@ public class OrderController {
         stage.show();
     }
 
+    /**
+     * Taking selected items and putting them in listView and calculating total price
+     * @param selectedClothes
+     */
     public void setSelectedItems(ObservableList<Clothes> selectedClothes) {
         this.selectedClothes = selectedClothes;
         ObservableList<String> name = FXCollections.observableArrayList();
         for (Clothes c:selectedClothes)
             name.add(c.getClothes_name());
         listView.setItems(name);
+
         double finalPrice = 0;
         for(Clothes c: this.selectedClothes) {
             finalPrice += c.getPrice();

@@ -17,21 +17,24 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+/**
+ * JavaFX controller for User registration
+ *
+ * @author Nermin Obucina
+ */
 public class RegisterController {
+
     @FXML
     private TextField nameField;
-
     @FXML
     private TextField surnameField;
     @FXML
     private TextField mailField;
-
     @FXML
     private PasswordField passwordField;
 
     @FXML
     private Button submitButton;
-
     @FXML
     private Button loginButton;
 

@@ -21,12 +21,17 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
+/**
+ * JavaFX controller for Home screen
+ *
+ * @author Nermin Obucina
+ */
 public class HomeController {
     private Parent root;
     private Stage stage;
     private Scene scene;
+
     @FXML
     public ImageView imageView;
     @FXML
@@ -45,12 +50,15 @@ public class HomeController {
     public TableColumn<Clothes,Integer> priceColumn;
     @FXML
     public TableView tableView;
+
     private ClothesManager manager = new ClothesManager();
     private CategoryManager categoryManager = new CategoryManager();
 
     @FXML
     public void initialize() throws ShopException {
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        //setting items in tableView
         nameColumn.setCellValueFactory(new PropertyValueFactory<Clothes,String>("clothes_name"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<Clothes,String>("idcategory"));
         sizeColumn.setCellValueFactory(new PropertyValueFactory<Clothes,Integer>("size"));
@@ -59,13 +67,13 @@ public class HomeController {
         tableView.setItems(items);
         imageView.setImage(new Image("/img/logo.jpg"));
 
+        //update the imageView by clicking the clothes
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             Clothes c = (Clothes) newValue;
             if(c != null) {
                 String imgName = c.getClothes_name();
                 File file = new File("C:\\Users\\nermi\\projekat\\src\\main\\resources\\img\\" + imgName + ".jpg");
                 if (file.exists() && !file.isDirectory()) {
-                    // update the image view here
                     Image newImage = new Image(getClass().getResource("/img/" + c.getClothes_name() + ".jpg").toString());
                     imageView.setImage(newImage);
                 }
@@ -78,14 +86,27 @@ public class HomeController {
             }
         });
 
-        categoryFilter.setItems(FXCollections.observableList(categoryManager.getAll()));
+        //updating tableView by choosing a certain category
+        Category anyCategory = new Category();
+        anyCategory.setName("Any");
+        ObservableList<Category> categories = FXCollections.observableList(categoryManager.getAll());
+        categories.add(0, anyCategory);
+        categoryFilter.setItems(categories);
         categoryFilter.valueProperty().addListener((obs, oldClothes, newClothes) -> {
             if (newClothes != null) {
-                try {
-                    ObservableList<Clothes> filteredClothingData = FXCollections.observableArrayList(manager.searchByCategory((Category) newClothes));
-                    tableView.setItems(filteredClothingData);
-                } catch (ShopException e) {
-                    e.printStackTrace();
+                if (newClothes.equals(anyCategory)) {
+                    try {
+                        tableView.setItems(FXCollections.observableArrayList(manager.getAll()));
+                    } catch (ShopException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    try {
+                        ObservableList<Clothes> filteredClothingData = FXCollections.observableArrayList(manager.searchByCategory((Category) newClothes));
+                        tableView.setItems(filteredClothingData);
+                    } catch (ShopException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
