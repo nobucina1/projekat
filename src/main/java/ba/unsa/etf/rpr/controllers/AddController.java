@@ -21,6 +21,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * JavaFX controller for adding clothes
+ *
+ * @author Nermin Obucina
+ */
 public class AddController {
     @FXML
     public TextField nameText;
@@ -30,7 +35,9 @@ public class AddController {
     public TextField sizeText;
     @FXML
     public TextField priceText;
+    @FXML
     public Button addButton;
+
     private Parent root;
     private Stage stage;
     private Scene scene;
@@ -38,6 +45,11 @@ public class AddController {
     ClothesManager clothesManager = new ClothesManager();
     CategoryManager categoryManager = new CategoryManager();
 
+    /**
+     * add button evemt handler
+     * @param event
+     * @throws ShopException
+     */
     public void onAdd(ActionEvent event) throws ShopException {
         Window owner = addButton.getScene().getWindow();
 
@@ -47,22 +59,32 @@ public class AddController {
         cat.setName(categoryText.getText());
         List<Category> categoryList = new ArrayList<>(categoryManager.getAll());
         for (Category tmp:categoryList)
+            //checking if the category exists
             if (tmp.getName().equals(cat.getName())) {
                 exists = true;
                 cat = tmp;
                 break;
             }
+        //if the category doesn't exist, create it
         if (!exists) {
             cat = categoryManager.add(cat);
         }
+        //adding clothing
         c.setClothes_name(nameText.getText());
         c.setIdcategory(cat);
         c.setSize(Integer.parseInt(sizeText.getText()));
         c.setPrice(Integer.parseInt(priceText.getText()));
         clothesManager.add(c);
+
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Successfuly added!",
                 "Congratulations :)");
     }
+
+    /**
+     * cancel button event handler
+     * @param event
+     * @throws IOException
+     */
     public void onCancel(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/home.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

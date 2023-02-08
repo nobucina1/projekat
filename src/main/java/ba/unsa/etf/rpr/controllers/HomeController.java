@@ -112,12 +112,22 @@ public class HomeController {
         });
     }
 
+    /**
+     * search button event handler
+     * @param event
+     * @throws ShopException
+     */
     @FXML
     public void searchClothes(ActionEvent event) throws ShopException {
         ObservableList<Clothes> items = FXCollections.observableList(manager.searchClothes(searchClothes.getText()));
         tableView.setItems(items);
     }
 
+    /**
+     * delete button event handler
+     * @param event
+     * @throws ShopException
+     */
     @FXML
     public void deleteClothes(ActionEvent event) throws ShopException {
             Clothes selectedClothes = (Clothes) tableView.getSelectionModel().getSelectedItem();
@@ -133,6 +143,11 @@ public class HomeController {
             }
     }
 
+    /**
+     * add button event handler to switch to Add scene
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void switchToAdd(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/add.fxml"));
@@ -142,6 +157,11 @@ public class HomeController {
         stage.show();
     }
 
+    /**
+     * add button event handler to switch to Order scene
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void switchToOrder(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/order.fxml"));

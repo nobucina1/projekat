@@ -8,7 +8,7 @@ import ba.unsa.etf.rpr.exceptions.ShopException;
 import java.util.List;
 
 /**
- * Business Logic Layer for Clothes
+ * Business Logic Layer for management of Clothes
  *
  * @author Nermin Obucina
  */

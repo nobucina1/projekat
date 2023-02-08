@@ -1,14 +1,17 @@
 package ba.unsa.etf.rpr.business;
 
 import ba.unsa.etf.rpr.dao.DaoFactory;
-import ba.unsa.etf.rpr.domain.Category;
-import ba.unsa.etf.rpr.domain.Clothes;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.ShopException;
 
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Business Logic Layer for management of Users
+ *
+ * @author Nermin Obucina
+ */
 public class UserManager {
     public List<User> getAll() throws ShopException {
         return DaoFactory.userDao().getAll();
