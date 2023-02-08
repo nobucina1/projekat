@@ -15,10 +15,19 @@ import java.util.TreeMap;
  */
 
 public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
+
+    private static UserDaoSQLImpl instance = null;
+
     private static final String SELECT_QUERY = "SELECT * FROM user WHERE mail = ? and password = ?";
     private static final String INSERT_QUERY = "INSERT INTO user (name, surname, mail, password) VALUES (?, ?, ?, ?)";
     public UserDaoSQLImpl() {
         super("user","iduser");
+    }
+
+    public static UserDaoSQLImpl getInstance() {
+        if (instance == null)
+            instance = new UserDaoSQLImpl();
+        return instance;
     }
 
     /**

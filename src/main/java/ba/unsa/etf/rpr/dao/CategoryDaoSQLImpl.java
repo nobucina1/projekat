@@ -12,9 +12,16 @@ import java.util.TreeMap;
  * @author Nermin Obucina
  */
 public class CategoryDaoSQLImpl extends AbstractDao<Category> implements CategoryDao{
+    private static CategoryDaoSQLImpl instance = null;
 
     public CategoryDaoSQLImpl() {
         super("category","idcategory");
+    }
+
+    public static CategoryDaoSQLImpl getInstance() {
+        if (instance == null)
+            instance = new CategoryDaoSQLImpl();
+        return instance;
     }
 
     @Override

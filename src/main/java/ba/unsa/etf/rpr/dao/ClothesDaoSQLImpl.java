@@ -19,8 +19,17 @@ import java.util.TreeMap;
  */
 
 public class ClothesDaoSQLImpl extends AbstractDao<Clothes> implements ClothesDao{
+
+    private static ClothesDaoSQLImpl instance = null;
+
     public ClothesDaoSQLImpl() {
         super("clothes","idclothes");
+    }
+
+    public static ClothesDaoSQLImpl getInstance() {
+        if (instance == null)
+            instance = new ClothesDaoSQLImpl();
+        return instance;
     }
 
     @Override

@@ -13,8 +13,17 @@ import java.util.TreeMap;
  * @author Nermin Obucina
  */
 public class BuyingDaoSQLImpl extends AbstractDao<Buying> implements BuyingDao{
+
+    private static BuyingDaoSQLImpl instance = null;
+
     public BuyingDaoSQLImpl() {
         super("buying","idbuying");
+    }
+
+    public static BuyingDaoSQLImpl getInstance() {
+        if (instance == null)
+            instance = new BuyingDaoSQLImpl();
+        return instance;
     }
 
     @Override
