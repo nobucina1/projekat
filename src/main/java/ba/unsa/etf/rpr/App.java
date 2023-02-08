@@ -30,11 +30,12 @@ public class App {
      * Defining final variables to describe all code having options
      */
     private static final Option addClothes = new Option("c","add-clothes",false, "Adding new clothes to database");
-    private static final Option addCategory = new Option("c","add-category",false, "Adding new category to quote-maker database");
+    private static final Option addCategory = new Option("cat","add-category",false, "Adding new category to quote-maker database");
     private static final Option getClothes = new Option("getC", "get-clothes",false, "Printing all clothes from database");
-    private static final Option getCategories = new Option("getC", "get-categories",false, "Printing all categories from database");
+    private static final Option getCategories = new Option("getCat", "get-categories",false, "Printing all categories from database");
     private static final Option categoryDefinition = new Option(null, "category",false, "Defining category for next added clothing");
-
+    private static final Option sizeDefinition = new Option(null, "size", false,"Defining size for nes added clothing");
+    private static final Option priceDefinition = new Option(null, "price", false,"Defining price for nes added clothing");
 
 
 
@@ -58,6 +59,8 @@ public class App {
         options.addOption(getClothes);
         options.addOption(getCategories);
         options.addOption(categoryDefinition);
+        options.addOption(sizeDefinition);
+        options.addOption(priceDefinition);
         return options;
     }
 
@@ -84,7 +87,7 @@ public class App {
         CommandLine cl = commandLineParser.parse(options, args);
 
 //        while(true) {
-        if((cl.hasOption(addClothes.getOpt()) || cl.hasOption(addClothes.getLongOpt())) && cl.hasOption((categoryDefinition.getLongOpt()))){
+        if((cl.hasOption(addClothes.getOpt()) || cl.hasOption(addClothes.getLongOpt())) && cl.hasOption((categoryDefinition.getLongOpt())) && cl.hasOption(sizeDefinition.getLongOpt()) && cl.hasOption(priceDefinition.getLongOpt())){
             ClothesManager clothesManager = new ClothesManager();
             CategoryManager categoryManager = new CategoryManager();
             Category category = null;
@@ -102,8 +105,8 @@ public class App {
             Clothes clothes = new Clothes();
             clothes.setIdcategory(category);
             clothes.setClothes_name(cl.getArgList().get(0));
-            clothes.setSize(Integer.parseInt(cl.getArgList().get(1)));
-            clothes.setPrice(Integer.parseInt(cl.getArgList().get(2)));
+            clothes.setSize(Integer.parseInt(cl.getArgList().get(2)));
+            clothes.setPrice(Integer.parseInt(cl.getArgList().get(3)));
             clothesManager.add(clothes);
             System.out.println("You successfully added a clothing to database!");
 //                break;
